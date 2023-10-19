@@ -36,7 +36,7 @@ class Queue_Linked{
             }
             return true;
         }
-        catch (Exception e){
+        catch (OutOfMemoryError  e){
             return false;
         }
     }
@@ -71,4 +71,83 @@ class Queue_Linked{
     public Node getFront(){
         return front;
     }
+}
+class circularQueue{
+    int front;
+    int rear;
+    int[] arr;
+    int size;
+
+    circularQueue(){
+        size = 5;
+        arr = new int[size];
+        front = rear = -1;
+    }
+    circularQueue(int size){
+        this.size = size;
+        arr = new int[this.size];
+        front = rear = -1;
+    }
+
+    boolean enqueue(int v){
+        if(isEmpty()){
+            front = rear = 0;
+            arr[rear] = v;
+            return true;
+        }
+        else if (isFull()){
+            return false;
+        }
+        else{
+            rear = (rear+1) % this.size;
+            arr[rear] = v;
+            return true;
+        }
+    }
+    int dequeue(){
+        if(isEmpty()){
+            return -1;
+        }
+        else if (front == rear){
+            int temp = arr[front];
+            rear = front = -1;
+            return temp;
+        }
+        else{
+            int temp = arr[front];
+            front = (front+1) % this.size;
+            return temp;
+        }
+    }
+
+    boolean isFull(){
+        if ((rear+1) % this.size == front){
+            System.out.println("Array Size full");
+            return true;
+        }
+        return false;
+    }
+
+    boolean isEmpty(){
+        return (front == -1 && rear == -1);
+    }
+
+    public String toString(){
+        String temp = "";
+        for(int i=0;i<size;i++){
+            temp = temp + "" + arr[i];
+        }
+        return temp;
+    }
+
+    int getfront(){
+        if(isEmpty()){
+            return -1;
+        }
+        else{
+            int temp = arr[front];
+            return temp;
+        }
+    }
+
 }
