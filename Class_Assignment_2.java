@@ -16,8 +16,33 @@ public class Class_Assignment_2 {
     }
 
     // Question 2 Making a queue using 2 Stacks
-    public static void queue(){
-
+    class making_queue{
+        Stack s1 = new Stack();
+        Stack s2 = new Stack();
+        Stack temp_stack;
+        public int dequeue(){
+            if(s1.isEmpty()){
+                return -1;
+            }
+            else{
+                int temp=-1;
+                while(!s1.isEmpty()){
+                    temp = s1.pop();
+                    if(!s1.isEmpty())
+                        s2.push(temp);
+                }
+                temp_stack = s1;
+                s1 = s2;
+                s2 = temp_stack;
+                return temp;
+            }
+        }
+        public void enqueue(int value){
+            s1.push(value);
+        }
+        public boolean isEmpty(){
+            return s1.isEmpty();
+        }
     }
 
     // Question 3 remove and append zeros at the end of the array
