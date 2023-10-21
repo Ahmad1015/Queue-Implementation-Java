@@ -1,22 +1,17 @@
 public class Class_Assignment_2 {
     // Question 1
-    public static void reverse_Circular_Queue(){
+    public static void reverse_Circular_Queue(circularQueue queue){
         /*
          * Dequeue all elements from the circular queue and push them onto a stack.
          * Then pop all elements from the stack and enqueue them back into the circular queue.
         */
-        circularQueue queue = new circularQueue(5);
-        queue.enqueue(0);
-        queue.enqueue(1);
-        queue.enqueue(2);
-        queue.enqueue(3);
-        queue.enqueue(4);
-        Stack ss = new Stack(queue.size);
+        
+        Stack ss = new Stack();
         while(!queue.isEmpty()){
-            stack.push(queue.dequeue());
+            ss.push(queue.dequeue());
         }
         while(!ss.isEmpty()){
-            queue.enqueue(stack.pop());
+            queue.enqueue(ss.pop());
         }
     }
 
