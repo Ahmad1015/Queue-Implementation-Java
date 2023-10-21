@@ -28,5 +28,25 @@ class Stack{
         this.size = 0;
         this.top = null;
     }
-    
+    public boolean isEmpty(){
+        return size == 0;
+    }
+    public void push(int v){
+        Node newElement = new Node(v);
+        newElement.next = top;
+        top = newElement;
+        size++;
+    }
+    public int pop(){
+        if(top!=null){
+        Node temp = top;
+        top = top.next;
+        size--;
+        return temp.data;
+        }
+        else{
+            return -1;
+        }
+
+    } 
 }
