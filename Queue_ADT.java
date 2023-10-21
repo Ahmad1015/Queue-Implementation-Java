@@ -1,6 +1,6 @@
-public class Main{
+public class Queue_ADT{
     public static void main(String[] args){
-
+        System.out.println("Hello");
     }
 }
 class Node{
