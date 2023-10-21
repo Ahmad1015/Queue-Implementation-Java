@@ -6,6 +6,11 @@ public class Class_Assignment_2 {
          * Then pop all elements from the stack and enqueue them back into the circular queue.
         */
         circularQueue queue = new circularQueue(5);
+        queue.enqueue(0);
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
         Stack ss = new Stack(queue.size);
         while(!queue.isEmpty()){
             stack.push(queue.dequeue());
