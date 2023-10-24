@@ -1,13 +1,17 @@
 
 public class Queue_ADT{
     public static void main(String[] args){
-        int[] arr = {6,0,8,2,3,0,4,0,1};
-        arr = Class_Assignment_2.move_Zeros(arr);
-        for(int i=0;i<arr.length;i++){
-            System.out.println(arr[i]);
-        }
-        
-
+        LinkedList l2 = new LinkedList();
+        l2.addAtStart(7);
+        l2.addAtStart(6);
+        l2.addAtStart(5);
+        l2.addAtStart(4);
+        l2.addAtStart(3);
+        l2.addAtStart(2);
+        l2.addAtStart(1);
+        Class_Assignment_2 temp = new Class_Assignment_2();
+        temp.move_LinkedList(l2);
+        l2.print();
     }
 }
 class Node{

@@ -60,12 +60,31 @@ public class Class_Assignment_2 {
     }
 
     // Question 4  move even nodes to the end of the linked list in reverse order
-    public static void move_LinkedList(){
-        
+    public static void move_LinkedList(LinkedList ll){
+        Node curr  = ll.head;
+        Node curr2 = curr.next;
+        Stack ss = new Stack();
+        while(curr2!=null){
+            if(curr2.data % 2 == 0){
+                ss.push(curr2.data);
+                curr.next = curr.next.next;
+                curr2 = curr2.next;
+                continue;
+            }
+            curr = curr.next;
+            curr2 = curr2.next;
+        }
+        while(!ss.isEmpty()){
+            Node temp = new Node(ss.pop());
+            ll.tail.next = temp;
+            ll.tail = temp;
+        }
     }
 
     // Question 5 Leader Selection
 }
+
+// Stack class
 class Stack{
     Node top;
     int size;
@@ -98,4 +117,214 @@ class Stack{
         }
 
     } 
+}
+
+// Linked List Class
+class LinkedList {
+    Node head;
+    int size;
+    Node tail;
+
+    public LinkedList() {
+        this.head = null;
+        this.tail = null;
+    }
+
+    public void addAtStart(int element){            
+        Node newNode = new Node(element);
+            newNode.next = head;
+            head = newNode;
+            if (tail == null)
+                tail=head ;
+            size++;
+    }
+
+    public void addAtEnd(int element){
+        Node newNode = new Node(element);
+        size++;
+        if(head == null){
+            head = newNode;
+            tail = newNode;
+            return;
+        }
+        else{
+            tail.next = newNode;
+            tail= newNode;
+        }
+        
+    }
+
+    public boolean addAtLocation(int location,int element){
+        if(location>=0 &&location<=size){                       // Validation if location is valid or not
+            if(location == 0)
+                addAtStart(element);
+            else if (location == size)
+                addAtEnd(element);
+            else{
+                int counter = 0;
+                Node curr = head;
+                Node temp = new Node(element);
+                while(curr.next!=null){
+                    if (counter==location-1){
+                        temp.next = curr.next;
+                        curr.next = temp;
+                        size++;
+                    }
+                    counter++;
+                    curr = curr.next;
+                }
+            }
+            return true;
+        }
+        else{
+            System.out.println("Location is not Valid");
+        }                        
+        return false;
+    }
+
+    public void print(){
+        if(head == null){
+            System.out.println("List is empty");
+            return;
+        }
+        Node currNode = head;
+        while(currNode != null){
+            System.out.print(currNode.data + "-> ");
+            currNode = currNode.next;
+        }
+        System.out.println("null");
+    }
+
+    public Node delAtEnd() {
+        if (head == null){
+            System.out.println("List is Empty\nCannot Perform this Action");
+            return null;
+        }
+        else if (head == tail){
+            head = null;
+            tail = null;
+            size--;
+        }
+        else{
+            Node curr = head;
+            while(curr.next!=tail){
+                curr=curr.next;}
+                Node Temp = tail;
+                curr.next = null;
+                tail = curr;
+                size--;
+                return Temp;
+            
+        }
+        return null;
+    }
+
+    public Node delAtStart(){                               
+        if (head==null){
+                System.out.println("List is empty");
+                return null;
+        }
+        Node currNode = head;
+        head = currNode.next;
+        size--;
+        return currNode;
+    }
+
+    public Node delAtLocation(int location){
+        Node removed = head;
+        if(location>=0 && location<size){
+            if (location==0)
+                delAtStart();
+            else if(location==size-1)
+                delAtEnd();
+            else{
+                int counter = 0;
+                Node curr = head;
+                while(curr.next!=null){
+                    if (counter==location-1){
+                        if(curr.next.next!=null){
+                            removed = curr.next;
+                            curr.next = curr.next.next;
+                        }
+                        else{
+                            removed = curr.next;
+                            curr.next = null;
+                        }     
+                        size--;
+                    }
+                    counter++;
+                    curr = curr.next;
+                }
+            }
+        }
+        else{
+            System.out.println("Invalid Location");
+            return null;
+        }
+        return removed;
+    }
+    
+    public Node search(int element){
+            if (head==null){
+                System.out.println("List is empty");
+                return null;
+            }
+            Node currNode = head;
+            while(currNode!=null){
+                if (currNode.data == element)
+                    return currNode;
+                currNode = currNode.next;
+            }
+            return null;
+    } 
+
+    public void sorting(int order){
+            Node curr = head;
+            Node curr2 = head;
+            Node temp = new Node();
+            while(curr2!=null){
+                while(curr.next!=null){
+                     if ((order == 1 && curr.data > curr.next.data) || (order == 2 && curr.data < curr.next.data)) {
+                        temp.data = curr.data;
+                        curr.data = curr.next.data;
+                        curr.next.data = temp.data;
+                    }
+                    curr=curr.next;
+                }
+                curr = head;
+                curr2 = curr2.next;
+            }    
+    }
+
+    public void UpdatedLinkedList(int updatedValue,int elementToFind){
+        Node result = search(elementToFind);
+        if (result == null){
+            System.out.println("List is empty");
+            return;
+        }
+        else{
+            Node currNode = head;
+            while(currNode!=null){
+                if (currNode == result)
+                    currNode.data = updatedValue;
+                currNode = currNode.next;
+            }
+        }
+
+        }
+    
+    public Node removeDuplicatesFromSortedList(){
+        if (head==null)
+            return head;
+        Node curr = head;
+        while(curr.next!=null){
+            if (curr.data == curr.next.data){
+                curr.next = curr.next.next;
+            }
+            else
+                curr = curr.next;
+        }
+        return head;
+    }
+
 }
