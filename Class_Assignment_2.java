@@ -46,13 +46,22 @@ public class Class_Assignment_2 {
     }
 
     // Question 3 remove and append zeros at the end of the array
-    public static void move_Zeros(){
-
+    public static int[] move_Zeros(int[] arr){
+        for(int i=0;i<arr.length;i++){
+            if(arr[i] == 0){
+                for(int j=i;j<arr.length-1;j++){
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+        return arr;
     }
 
     // Question 4  move even nodes to the end of the linked list in reverse order
     public static void move_LinkedList(){
-
+        
     }
 
     // Question 5 Leader Selection
