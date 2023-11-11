@@ -1,17 +1,8 @@
 
 public class Queue_ADT{
     public static void main(String[] args){
-        LinkedList l2 = new LinkedList();
-        l2.addAtStart(7);
-        l2.addAtStart(6);
-        l2.addAtStart(5);
-        l2.addAtStart(4);
-        l2.addAtStart(3);
-        l2.addAtStart(2);
-        l2.addAtStart(1);
-        Class_Assignment_2 temp = new Class_Assignment_2();
-        temp.move_LinkedList(l2);
-        l2.print();
+       Boolean flag =  Class_Assignment_2.balance("([{}])");
+       System.out.println(flag);
     }
 }
 class Node{
@@ -88,7 +79,6 @@ class circularQueue{
     int rear;
     int[] arr;
     int size;
-
     circularQueue(){
         size = 5;
         arr = new int[size];
